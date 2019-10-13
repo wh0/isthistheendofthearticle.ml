@@ -1,12 +1,12 @@
 ---
 layout: base
 ---
-<h1 class="siteheading"><a href="/">Is this the end of the article?</a></h1>
+{% include siteheading.html %}
 
-<div id="contentstart"></div>
+<div id="contentstart" class="anchor"></div>
 
 {% for post in paginator.posts %}
-	<div id="above" class="frame">
+	<div id="above" class="frame anchor">
 		<img class="shot" srcset="{{ post.image_above }} {{ post.dpi }}x">
 		<div class="message">
 			<p>

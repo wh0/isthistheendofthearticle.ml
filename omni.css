@@ -27,7 +27,7 @@ body {
 	color: inherit;
 }
 .text {
-	margin: 0px auto;
+	margin: 0px auto 96px;
 	max-width: 38rem;
 	hyphens: auto;
 }
@@ -38,27 +38,16 @@ body {
 h1 {
 	margin: 16px 0px;
 }
-.linkrow {
-	display: flex;
-	justify-content: space-evenly;
-	margin: 16px auto 48px;
-	border-radius: 26.5px;
-	padding: 16px;
-	max-width: 38rem;
-	background-color: #ffffff;
-	color: #a0a0a0;
-}
-.linkrow a:link,
-.linkrow a:visited {
-	color: inherit;
+.anchor {
+	margin-left: -16px;
+	margin-right: -16px;
 }
 .frame {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 16px 0px;
-	min-width: min-content;
+	padding: 16px;
 	min-height: calc(100vh - 32px);
 }
 .shot {
@@ -108,9 +97,8 @@ h1 {
 	display: none;
 }
 .space {
-	margin: 32px 0px;
+	margin: 48px 0px;
 	text-align: center;
-	font-size: 21px;
 	color: #d0d0d0;
 }
 #guessed-yes:target {
@@ -134,4 +122,18 @@ h1 {
 .metadata td {
 	padding: 0px;
 	vertical-align: top;
+}
+.linkrow {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 16px auto 96px;
+	border-radius: 26.5px;
+	padding: 16px;
+	max-width: 38rem;
+	background-color: #ffffff;
+	color: #a0a0a0;
+}
+.linkrow a:link,
+.linkrow a:visited {
+	color: inherit;
 }
