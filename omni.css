@@ -126,7 +126,7 @@ h1 {
 }
 .linkrow {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	margin: 16px auto 96px;
 	border-radius: 26.5px;
 	padding: 16px;
