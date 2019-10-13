@@ -1,0 +1,69 @@
+---
+layout: base
+---
+{% include siteheading.html %}
+
+<div id="above" class="frame">
+	<img class="shot" srcset="{{ page.image_above }} {{ page.dpi }}x">
+	<div class="message">
+		<p>
+			Is this the end of the article?<span class="ws"> </span>
+			<span class="nw">
+				<a href="#guessed-yes" class="guess yes" onclick="gtag('event', 'guess', {event_label: '{{ page.id }}:yes'})">Yes</a><span class="ws"> </span>
+				<a href="#guessed-no" class="guess no" onclick="gtag('event', 'guess', {event_label: '{{ page.id }}:no'})">No</a>
+			</span>
+		</p>
+	</div>
+</div>
+
+<div class="space"><span class="ws">&#x1f662; &#x1f661;</span></div>
+
+<div id="guessed-yes"></div>
+<div id="guessed-no"></div>
+
+<div id="below" class="frame">
+	<img class="shot" srcset="{{ page.image_below }} {{ page.dpi }}x">
+	<div class="message">
+		<p>
+			{% if page.ground_truth %}
+				It is.<span class="ws"> </span>
+				<span class="guessed-flair yes">🏆</span>
+				<span class="guessed-flair no">🤦</span>
+			{% else %}
+				It is not.<span class="ws"> </span>
+				<span class="guessed-flair yes">🤦</span>
+				<span class="guessed-flair no">🏆</span>
+			{% endif %}
+		</p>
+	</div>
+</div>
+
+<table class="metadata">
+	<tr>
+		<td class="k">Source</td>
+		<td class="v">{% if page.source_url %}<a href="{{ page.source_url }}">{{ page.source_name }}</a>{% else %}Not recorded{% endif %}</td>
+	</tr>
+	<tr>
+		<td class="k">Source published</td>
+		<td class="v">{{ page.source_published | date: "%B %e, %Y" | default: "Not recorded" }}</td>
+	</tr>
+	<tr>
+		<td class="k">Encountered</td>
+		<td class="v">{{ page.date | date: "%B %e, %Y" | default: "Not recorded" }}</td>
+	</tr>
+</table>
+
+{{ content }}
+
+<nav class="linkrow">
+	{% if page.previous %}
+		<a href="{{ page.previous.url }}#above">Prev</a>
+	{% else %}
+		<span>Prev</span>
+	{% endif %}
+	{% if page.next %}
+		<a href="{{ page.next.url }}#above">Next</a>
+	{% else %}
+		<span>Next</span>
+	{% endif %}
+</nav>

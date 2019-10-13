@@ -1,0 +1,11 @@
+paginate: 6
+defaults:
+  -
+    scope:
+      type: posts
+    values:
+      title: ""
+      layout: post
+timezone: US/Pacific
+plugins:
+  - jekyll-paginate

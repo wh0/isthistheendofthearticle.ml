@@ -1,0 +1,35 @@
+---
+layout: base
+---
+<h1 class="siteheading"><a href="/">Is this the end of the article?</a></h1>
+
+<div id="contentstart"></div>
+
+{% for post in paginator.posts %}
+	<div id="above" class="frame">
+		<img class="shot" srcset="{{ post.image_above }} {{ post.dpi }}x">
+		<div class="message">
+			<p>
+				Is this the end of the article?<span class="ws"> </span>
+				<span class="nw">
+					<a href="{{ post.url }}#guessed-yes" class="guess yes" onclick="gtag('event', 'guess', {event_label: '{{ post.id }}:yes'})">Yes</a><span class="ws"> </span>
+					<a href="{{ post.url }}#guessed-no" class="guess no" onclick="gtag('event', 'guess', {event_label: '{{ post.id }}:no'})">No</a>
+				</span>
+			</p>
+		</div>
+	</div>
+{% endfor %}
+
+<nav class="linkrow">
+	{% if paginator.previous_page %}
+		<a href="{{ paginator.previous_page_path }}#contentstart">Prev</a>
+	{% else %}
+		<span>Prev</span>
+	{% endif %}
+	<span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+	{% if paginator.next_page %}
+		<a href="{{ paginator.next_page_path }}#contentstart">Next</a>
+	{% else %}
+		<span>Next</span>
+	{% endif %}
+</nav>
