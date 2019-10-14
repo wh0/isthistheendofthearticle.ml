@@ -7,7 +7,7 @@ layout: base
 
 {% for post in paginator.posts %}
 	<div id="above" class="frame anchor">
-		<img class="shot" srcset="{{ post.image_above }} {{ post.dpi }}x">
+		<img class="shot" srcset="{{ post.image_above }} {{ post.ratio }}x">
 		<div class="message">
 			<p>
 				Is this the end of the article?<span class="ws"> </span>

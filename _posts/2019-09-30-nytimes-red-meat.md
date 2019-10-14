@@ -2,7 +2,7 @@
 date: Mon Sep 30 2019 19:03:33 -0700 (Pacific Daylight Time)
 image_above: /shots/Screenshot_20190930-190333.png
 image_below: /shots/Screenshot_20190930-190344.png
-dpi: 2.6
+ratio: 2.625
 ground_truth: false
 source_url: https://www.nytimes.com/2019/09/30/health/red-meat-heart-cancer.html
 source_name: The New York Times

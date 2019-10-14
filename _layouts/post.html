@@ -4,7 +4,7 @@ layout: base
 {% include siteheading.html %}
 
 <div id="above" class="frame anchor">
-	<img class="shot" srcset="{{ page.image_above }} {{ page.dpi }}x">
+	<img class="shot" srcset="{{ page.image_above }} {{ page.ratio }}x">
 	<div class="message">
 		<p>
 			Is this the end of the article?<span class="ws"> </span>
@@ -22,7 +22,7 @@ layout: base
 <div id="guessed-no" class="anchor"></div>
 
 <div id="below" class="frame anchor">
-	<img class="shot" srcset="{{ page.image_below }} {{ page.dpi }}x">
+	<img class="shot" srcset="{{ page.image_below }} {{ page.ratio }}x">
 	<div class="message">
 		<p>
 			{% if page.ground_truth %}
