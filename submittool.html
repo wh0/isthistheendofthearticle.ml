@@ -1,0 +1,91 @@
+---
+layout: text
+---
+<style>
+	.steps li {
+		margin: 1em 0em;
+	}
+	form p {
+		margin: 0.5em 0em;
+	}
+	.fullwidth {
+		box-sizing: border-box;
+		width: 100%;
+	}
+	#preview:after {
+		clear: left;
+		content: "";
+	}
+	#preview img {
+		display: block;
+		float: left;
+		max-width: 50%;
+	}
+</style>
+
+<h1 class="pagetitle">Submit an encounter</h1>
+<p>Prepare two screenshots:</p>
+<ul>
+	<li>an "above" screenshot showing a transition from article text to another element, where it can't be seen what's farther below the other element; and</li>
+	<li>a "below" screenshot showing what's below the other element.</li>
+</ul>
+<p>If the article does not end at the transition, then prefer to have the "below" screenshot show both the other element and the article text that follows.</p>
+<p>Then, follow these steps to submit your encounter. You'll need a <a href="https://github.com/join">GitHub account</a> for this.</p>
+
+<ol class="steps">
+	<li>
+		<p><a href="https://github.com/wh0/isthistheendofthearticle.ml/upload/master/shots">Upload</a> "above" and "below" screenshots into the <code>shots</code> directory and open a pull request.</p>
+	</li>
+
+	<li>
+		<p>Paste the pull request URL here and click 'Analyze' to fill in most of the fields in the next form.</p>
+		<form id="read-pull">
+			<p><label>Pull request URL<br><input class="fullwidth" type="url" name="url" required></label></p>
+			<p><input id="read-pull-submit" type="submit" value="Analyze" disabled></p>
+		</form>
+	</li>
+
+	<li>
+		<p>Complete the fields with bolded labels manually, then click 'Compile' to transfer the information into the next form.</p>
+		<form id="compile">
+			<p><label>Repository owner<br><input class="fullwidth" name="owner" required></label></p>
+			<p><label>Repository<br><input class="fullwidth" name="repo" required></label></p>
+			<p><label>Branch<br><input class="fullwidth" name="branch" required></label></p>
+			<p><label><strong>Slug</strong><br><small>Combine the source domain without public suffix and a few words about the aritcle, for example: nytimes-red-meat.</small><br><input class="fullwidth" name="slug" required></label></p>
+			<p><label>Encountered date<br><input type="datetime-local" name="date" step="any" required></label></p>
+			<p><label>Path to "above" screenshot<br><input class="fullwidth" name="image_above" required></label></p>
+			<p><label>Path to "below" screenshot<br><input class="fullwidth" name="image_below" required></label></p>
+			<p><label>Pixel ratio<br><small>We fill this in automatically with data from the browser. Make sure you're using this form on the same device that took the screenshots.</small><br><input name="ratio" required></label></p>
+			<p>
+				<b>Ground truth</b><br>
+				<small>Select the one that is true.</small><br>
+				<label><input type="radio" name="ground_truth" value="true" required> End of article</label><br>
+				<label><input type="radio" name="ground_truth" value="false" required> Article continues</label>
+			</p>
+			<p><small>These are optional, but please try to provide this information.</small></p>
+			<p><label><b>Source URL</b><br><input class="fullwidth" type="url" name="source_url"></label></p>
+			<p><label><b>Source name</b><br><input class="fullwidth" name="source_name"></label></p>
+			<p><label><b>Source published date</b><br><input type="date" name="source_published"></label></p>
+			<p><input id="compile-submit" type="submit" value="Compile" disabled></p>
+		</form>
+
+		<p>Preview<br><small>Here are the images from the pull request.</small><br><span id="preview"></span></p>
+
+		<form action="https://www.google.com/search" target="_blank">
+			<p><small>If you don't remember the source, you can try searching for a quoted phrase from the screenshot.</small></p>
+			<p><label>Query<br><input type="search" name="q" style="width: 100%;"></label></p>
+			<p><input type="submit" value="Search Google (new window)"></p>
+		</form>
+	</li>
+	<li>
+		<p>Click 'Open editor' to transfer the post file to GitHub, then click 'Commit new file' to add it to your pull request.</p>
+		<form id="new" target="_blank">
+			<p>Action<br><span id="new-action"></span></p>
+			<p><label>Filename<br><input class="fullwidth" name="filename"></label></p>
+			<p><label>Value<br><textarea class="fullwidth" name="value" rows="11" style="white-space: pre;"></textarea></label></p>
+			<p><input id="new-submit" type="submit" value="Open editor (new window)" disabled></p>
+		</form>
+	</li>
+</ol>
+
+<script src="submittool.js"></script>
