@@ -6,5 +6,5 @@ ratio: 2.625
 ground_truth: true
 source_url: https://9to5google.com/2019/10/11/pixel-4-official-render-leak/
 source_name: 9to5Google
-source_published: 2019-10-01
+source_published: 2019-10-11
 ---
