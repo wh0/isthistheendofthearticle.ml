@@ -7,6 +7,20 @@ body {
 	font-family: Source Sans Pro, sans-serif;
 	line-height: 1.5;
 }
+.banner {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 16px auto;
+}
+.banner img {
+	flex: none;
+}
+.banner h1 {
+	margin-left: 16px;
+	line-height: 1em;
+}
 .siteheading {
 	margin: 16px 0px;
 	line-height: 1.2;
@@ -127,7 +141,7 @@ h1 {
 .linkrow {
 	display: flex;
 	justify-content: space-around;
-	margin: 16px auto 96px;
+	margin: 16px auto;
 	border-radius: 26.5px;
 	padding: 16px;
 	max-width: 38rem;
@@ -137,4 +151,7 @@ h1 {
 .linkrow a:link,
 .linkrow a:visited {
 	color: inherit;
+}
+.end {
+	margin-bottom: 96px;
 }

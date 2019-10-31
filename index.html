@@ -1,12 +1,24 @@
 ---
 layout: base
 ---
-{% include siteheading.html %}
+{% if paginator.page == 1 %}
+	<div class="banner">
+		<img src="icon.svg" width="96" heigh="96">
+		<h1>Is this<br>the end<br>of the article?</h1>
+	</div>
+
+	<nav class="linkrow">
+		<a href="/what.html">What?</a>
+		<a href="/submittool.html">Submit an encounter</a>
+	</nav>
+{% else %}
+	{% include siteheading.html %}
+{% endif %}
 
 <div id="contentstart" class="anchor"></div>
 
 {% for post in paginator.posts %}
-	<div id="above" class="frame anchor">
+	<div class="frame anchor">
 		<img class="shot" srcset="{{ post.image_above }} {{ post.ratio }}x">
 		<div class="message">
 			<p>
@@ -20,7 +32,7 @@ layout: base
 	</div>
 {% endfor %}
 
-<nav class="linkrow">
+<nav class="linkrow end">
 	{% if paginator.previous_page %}
 		<a href="{{ paginator.previous_page_path }}#contentstart">Prev</a>
 	{% else %}
