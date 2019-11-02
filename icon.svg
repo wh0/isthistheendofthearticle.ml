@@ -27,25 +27,37 @@
 		a 3 3 0 0 1 0 -6
 	" fill="#000000" />
 	<!-- scroll -->
+	<rect x="3" y="2.5" width="2.5" height="2.5" fill="#808080" />
+	<rect x="4" y="13" width="1.5" height="1.5" fill="#808080" />
+	<path d="
+		M 3 1
+		a 2.5 2 0 0 1 2.5 2
+		h -0.5
+		a 2 2 0 1 1 -2 -2
+	" fill="#c0c0c0" />
+	<path d="
+		M 5 14
+		h 0.5
+		a 1.5 1 0 0 1 -1.5 1
+		a 1 1 0 1 1 1 -1
+	" fill="#c0c0c0" />
+	<circle cx="3" cy="3" r="0.75" fill="#404040" />
+	<circle cx="4" cy="14" r="0.75" fill="#404040" />
 	<path d="
 		M 3 1
 		H 13
 		a 2 2 0 0 1 2 2
 		V 14
 		a 1 1 0 0 1 -1 1
-		H 4
-		v -1
-		h 1
+		h -1
+		v -0.5
+		H 6.5
+		a 1.5 0.5 0 0 1 -1.5 0.5
+		h -1
+		a 1 1 0 0 0 1 -1
 		V 3
-		h -2
-		v -2
+		a 2 2 0 0 0 -2 -2
 	" fill="#f0f0f0" />
-	<rect x="3" y="3" width="2" height="2" fill="#808080" />
-	<rect x="4" y="13" width="1" height="1" fill="#808080" />
-	<circle cx="3" cy="3" r="2" fill="#c0c0c0" />
-	<circle cx="3" cy="3" r="0.75" fill="#404040" />
-	<circle cx="4" cy="14" r="1" fill="#c0c0c0" />
-	<circle cx="4" cy="14" r="0.75" fill="#404040" />
 	<g clip-path="url(#region)">
 		<!-- text -->
 		<rect x="4" y="1.003" width="10" height="0.314" fill="#808080" />
@@ -55,6 +67,6 @@
 		<rect x="6" y="8" width="5.215" height="1" fill="#808080" />
 		<circle cx="12.5" cy="8.5" r="0.5" fill="#808080" />
 		<!-- element -->
-		<rect x="4" y="11" width="10" height="4" fill="#0080ff" />
+		<rect x="4" y="11" width="10" height="4.5" fill="#0080ff" />
 	</g>
 </svg>
