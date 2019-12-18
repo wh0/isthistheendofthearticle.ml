@@ -33,15 +33,15 @@ layout: base
 {% endfor %}
 
 <nav class="linkrow end">
-	{% if paginator.previous_page %}
-		<a href="{{ paginator.previous_page_path }}#contentstart">Newer</a>
+	{% if paginator.next_page %}
+		<a href="{{ paginator.next_page_path }}#contentstart">Earlier</a>
 	{% else %}
-		<span>Newer</span>
+		<span>Earlier</span>
 	{% endif %}
 	<span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-	{% if paginator.next_page %}
-		<a href="{{ paginator.next_page_path }}#contentstart">Older</a>
+	{% if paginator.previous_page %}
+		<a href="{{ paginator.previous_page_path }}#contentstart">Later</a>
 	{% else %}
-		<span>Older</span>
+		<span>Later</span>
 	{% endif %}
 </nav>
