@@ -38,7 +38,7 @@ layout: base
 	</div>
 </div>
 
-<table class="metadata">
+<table class="metadata end">
 	<tr>
 		<td class="k">Source</td>
 		<td class="v">{% if page.source_url %}<a href="{{ page.source_url }}">{{ page.source_name }}</a>{% else %}Not recorded{% endif %}</td>
@@ -54,17 +54,3 @@ layout: base
 </table>
 
 {{ content }}
-
-<nav class="linkrow end">
-	{% if page.next %}
-		<a href="{{ page.next.url }}#above">Newer</a>
-	{% else %}
-		<span>Newer</span>
-	{% endif %}
-	<a href="#above">Clear guess</a>
-	{% if page.previous %}
-		<a href="{{ page.previous.url }}#above">Older</a>
-	{% else %}
-		<span>Older</span>
-	{% endif %}
-</nav>
