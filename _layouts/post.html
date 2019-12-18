@@ -56,14 +56,14 @@ layout: base
 {{ content }}
 
 <nav class="linkrow end">
-	{% if page.previous %}
-		<a href="{{ page.previous.url }}#above">Prev</a>
-	{% else %}
-		<span>Prev</span>
-	{% endif %}
 	{% if page.next %}
-		<a href="{{ page.next.url }}#above">Next</a>
+		<a href="{{ page.next.url }}#above">Newer</a>
 	{% else %}
-		<span>Next</span>
+		<span>Newer</span>
+	{% endif %}
+	{% if page.previous %}
+		<a href="{{ page.previous.url }}#above">Older</a>
+	{% else %}
+		<span>Older</span>
 	{% endif %}
 </nav>
