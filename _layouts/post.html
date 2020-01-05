@@ -26,19 +26,22 @@ layout: base
 	<div class="message">
 		<p>
 			{% if page.ground_truth %}
-				It is.<span class="ws"> </span>
 				<span class="guessed-flair yes">🏆</span>
 				<span class="guessed-flair no">🤦</span>
+				It is.<span class="ws"> </span>
 			{% else %}
-				It is not.<span class="ws"> </span>
 				<span class="guessed-flair yes">🤦</span>
 				<span class="guessed-flair no">🏆</span>
+				It is not.<span class="ws"> </span>
+			{% endif %}
+			{% if page.continuation_id %}
+				👇 How about below?
 			{% endif %}
 		</p>
 	</div>
 </div>
 
-<table class="metadata end">
+<table class="metadata">
 	<tr>
 		<td class="k">Source</td>
 		<td class="v">{% if page.source_url %}<a href="{{ page.source_url }}">{{ page.source_name }}</a>{% else %}Not recorded{% endif %}</td>
@@ -54,3 +57,21 @@ layout: base
 </table>
 
 {{ content }}
+
+{% if page.continuation_id %}
+	{% assign continuation_page = site.posts | where: 'id', page.continuation_id | first %}
+	<div id="continuation" class="frame anchor">
+		<img class="shot" srcset="{{ continuation_page.image_above }} {{ continuation_page.ratio }}x">
+		<div class="message">
+			<p>
+				Is this the end of the article?<span class="ws"> </span>
+				<span class="nw">
+					<a href="{{ continuation_page.url }}#guessed-yes" class="guess yes" onclick="gtag('event', 'guess', {event_label: '{{ continuation_page.id }}:yes'})">Yes</a><span class="ws"> </span>
+					<a href="{{ continuation_page.url }}#guessed-no" class="guess no" onclick="gtag('event', 'guess', {event_label: '{{ continuation_page.id }}:no'})">No</a>
+				</span>
+			</p>
+		</div>
+	</div>
+{% endif %}
+
+<div class="end"></div>

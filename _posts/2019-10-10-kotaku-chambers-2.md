@@ -7,4 +7,5 @@ ground_truth: true
 source_url: https://kotaku.com/college-hearthstone-players-who-held-up-free-hong-kong-1838953931
 source_name: Kotaku
 source_published: 2019-10-10
+hidden: true
 ---
