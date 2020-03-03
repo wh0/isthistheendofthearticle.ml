@@ -8,4 +8,5 @@ source_url: https://kotaku.com/college-hearthstone-players-who-held-up-free-hong
 source_name: Kotaku
 source_published: 2019-10-10
 hidden: true
+continued_from: /2019/10/10/kotaku-chambers
 ---

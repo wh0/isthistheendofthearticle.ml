@@ -19,6 +19,7 @@ layout: base
 	</div>
 </div>
 
+{% assign continuation_page = site.posts | where: 'continued_from', page.id | first %}
 <div id="below" class="frame anchor">
 	<img class="shot" srcset="{{ page.image_below }} {{ page.ratio }}x">
 	<div class="message">
@@ -32,7 +33,7 @@ layout: base
 				<span class="guessed-flair no">🏆</span>
 				It is not.<span class="ws"> </span>
 			{% endif %}
-			{% if page.continuation_id %}
+			{% if continuation_page %}
 				👇 How about below?
 			{% endif %}
 		</p>
@@ -56,8 +57,7 @@ layout: base
 
 {{ content }}
 
-{% if page.continuation_id %}
-	{% assign continuation_page = site.posts | where: 'id', page.continuation_id | first %}
+{% if continuation_page %}
 	<div id="continuation" class="frame anchor">
 		<img class="shot" srcset="{{ continuation_page.image_above }} {{ continuation_page.ratio }}x">
 		<div class="message">

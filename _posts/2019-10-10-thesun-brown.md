@@ -7,5 +7,4 @@ ground_truth: false
 source_url: https://www.thesun.co.uk/news/10104063/extinction-rebellion-paralympic-athlete-british-airways-london-city-airport/
 source_name: The Sun
 source_published: 2019-10-10
-continuation_id: /2019/10/10/thesun-brown-2
 ---

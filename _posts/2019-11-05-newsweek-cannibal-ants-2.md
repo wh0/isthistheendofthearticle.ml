@@ -8,4 +8,5 @@ source_url: https://www.newsweek.com/cannibal-ants-soviet-nuclear-bunker-1469573
 source_name: Newsweek
 source_published: 2019-11-04
 hidden: true
+continued_from: /2019/11/05/newsweek-cannibal-ants
 ---

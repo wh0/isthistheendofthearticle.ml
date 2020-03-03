@@ -8,4 +8,5 @@ source_url: https://www.thesun.co.uk/news/10104063/extinction-rebellion-paralymp
 source_name: The Sun
 source_published: 2019-10-10
 hidden: true
+continued_from: /2019/10/10/thesun-brown-2
 ---
