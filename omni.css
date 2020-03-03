@@ -116,6 +116,12 @@ h1 {
 	text-align: center;
 	color: #d0d0d0;
 }
+#guessed-yes:target ~ #above,
+#guessed-no:target ~ #above,
+#guessed-yes:target ~ #between,
+#guessed-no:target ~ #between {
+	display: none;
+}
 #guessed-yes:target ~ * .guessed-flair.yes,
 #guessed-no:target ~ * .guessed-flair.no {
 	display: inline;

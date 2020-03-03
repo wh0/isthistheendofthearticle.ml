@@ -3,6 +3,9 @@ layout: base
 ---
 {% include siteheading.html %}
 
+<div id="guessed-yes" class="anchor"></div>
+<div id="guessed-no" class="anchor"></div>
+
 <div id="above" class="frame anchor">
 	<img class="shot" srcset="{{ page.image_above }} {{ page.ratio }}x">
 	<div class="message">
@@ -16,10 +19,7 @@ layout: base
 	</div>
 </div>
 
-<div class="space"><span class="ws">&#x2731; &#x2731; &#x2731;</span></div>
-
-<div id="guessed-yes" class="anchor"></div>
-<div id="guessed-no" class="anchor"></div>
+<div id="between" class="space"><span class="ws">&#x2731; &#x2731; &#x2731;</span></div>
 
 <div id="below" class="frame anchor">
 	<img class="shot" srcset="{{ page.image_below }} {{ page.ratio }}x">
