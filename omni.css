@@ -117,10 +117,20 @@ h1 {
 	color: #d0d0d0;
 }
 #guessed-yes:target ~ #above,
-#guessed-no:target ~ #above,
-#guessed-yes:target ~ #between,
-#guessed-no:target ~ #between {
+#guessed-no:target ~ #above {
 	display: none;
+}
+#guessed-yes ~ #below,
+#guessed-no ~ #below,
+#guessed-yes ~ #continuation,
+#guessed-no ~ #continuation {
+	display: none;
+}
+#guessed-yes:target ~ #below,
+#guessed-no:target ~ #below,
+#guessed-yes:target ~ #continuation,
+#guessed-no:target ~ #continuation {
+	display: flex;
 }
 #guessed-yes:target ~ * .guessed-flair.yes,
 #guessed-no:target ~ * .guessed-flair.no {
