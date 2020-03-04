@@ -17,15 +17,25 @@ function guessDate(name) {
 }
 
 function setLocalDate(o, d) {
-	o.valueAsNumber = d.getTime() - new Date(1970, 0).getTime();
+	if (o.type === 'text') {
+		o.value = d.toString();
+	} else {
+		o.valueAsNumber = d.getTime() - new Date(1970, 0).getTime();
+	}
 }
 
 function getLocalDate(o) {
-	return new Date(new Date(1970, 0).getTime() + o.valueAsNumber);
+	if (o.type === 'text') {
+		return new Date(o.value);
+	} else {
+		return new Date(new Date(1970, 0).getTime() + o.valueAsNumber);
+	}
 }
 
 const readPullForm = document.getElementById('read-pull');
 const readPullSubmit = document.getElementById('read-pull-submit');
+const continueForm = document.getElementById('continue');
+const continueSubmit = document.getElementById('continue-submit');
 const preview = document.getElementById('preview');
 const compileForm = document.getElementById('compile');
 const compileSubmit = document.getElementById('compile-submit');
@@ -44,6 +54,9 @@ async function readPull(url) {
 	if (pull.base.repo.name !== dstRepo) alert('pull base repo doesn\'t match. this might get weird');
 	if (pull.head.repo.name !== dstRepo) alert('pull head repo doesn\'t match. this might get weird');
 
+	continueForm.elements.owner.value = pull.head.repo.owner.login;
+	continueForm.elements.repo.value = pull.head.repo.name;
+	continueForm.elements.branch.value = pull.head.ref;
 	compileForm.elements.owner.value = pull.head.repo.owner.login;
 	compileForm.elements.repo.value = pull.head.repo.name;
 	compileForm.elements.branch.value = pull.head.ref;
@@ -72,16 +85,70 @@ async function readPull(url) {
 	if (newShots.length >= 2) {
 		compileForm.elements.image_below.value = `/${newShots[1].filename}`;
 	}
+
+	const posts = await fetchApi(`/repos/${pull.head.repo.owner.login}/${pull.head.repo.name}/contents/_posts?ref=${pull.head.ref}`);
+	continueForm.elements.post.innerHTML = '';
+	for (let i = posts.length - 1; i >= 0; i--) {
+		const post = posts[i];
+		const option = document.createElement('option');
+		option.value = post.name;
+		option.textContent = post.name;
+		continueForm.elements.post.appendChild(option);
+	}
 }
 
 readPullForm.onsubmit = (ev) => {
 	ev.preventDefault();
 	readPull(ev.target.elements.url.value).catch((e) => {
+		console.error(e);
 		alert(e);
 	});
 };
 readPullSubmit.disabled = false;
 if (document.referrer.startsWith('https://github.com/')) readPullForm.elements.url.value = document.referrer;
+
+const PATTERN_POST = /(\d+)-(\d+)-(\d+)-(([\w-]+?)(-\d+)?)\.md/i;
+
+async function loadContinuation(owner, repo, branch, post) {
+	const m = PATTERN_POST.exec(post);
+	if (m === null) throw new Error('post doesn\'t match pattern');
+	const [, year, month, day, slug, slugNoNumber, number] = m;
+
+	const file = await fetchApi(`/repos/${owner}/${repo}/contents/_posts/${post}?ref=${branch}`);
+	if (file.encoding !== 'base64') throw new Error('unknown encoding ' + file.encoding);
+	const md = atob(file.content);
+	const frontMatter = md.split('---\n')[1].split('\n');
+	frontMatter.pop();
+	const fields = {};
+	for (const line of frontMatter) {
+		const [k, v] = line.split(': ');
+		fields[k] = v;
+	}
+
+	const newSlug = number ? slugNoNumber + (number - 1) : slugNoNumber + '-2';
+	const fromId = `/${year}/${month}/${day}/${slug}`;
+	compileForm.elements.slug.value = newSlug;
+	if ('ratio' in fields) compileForm.elements.ratio.value = fields.ratio;
+	if ('source_url' in fields) compileForm.elements.source_url.value = fields.source_url;
+	if ('source_name' in fields) compileForm.elements.source_name.value = fields.source_name;
+	if ('source_published' in fields) compileForm.elements.source_published.value = fields.source_published;
+	compileForm.elements.hidden.checked = true;
+	compileForm.elements.continued_from.value = fromId;
+}
+
+continueForm.onsubmit = (ev) => {
+	ev.preventDefault();
+	loadContinuation(
+		ev.target.elements.owner.value,
+		ev.target.elements.repo.value,
+		ev.target.elements.branch.value,
+		ev.target.elements.post.value,
+	).catch((e) => {
+		console.error(e);
+		alert(e);
+	});
+};
+continueSubmit.disabled = false;
 
 compileForm.ratio.value = window.devicePixelRatio;
 compileForm.onsubmit = (ev) => {
@@ -92,6 +159,8 @@ compileForm.onsubmit = (ev) => {
 	newAction.textContent = action;
 
 	const date = getLocalDate(compileForm.elements.date);
+	const maybeHidden = compileForm.elements.hidden.checked ? 'hidden: true\n' : '';
+	const maybeContinuedFrom = compileForm.elements.continued_from.value ? `continued_from: ${compileForm.elements.continued_from.value}\n` : '';
 	newForm.elements.filename.value = `_posts/${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}-${compileForm.elements.slug.value}.md`;
 	newForm.elements.value.value = `---
 date: ${date.toString().replace('GMT', '')}
@@ -102,7 +171,7 @@ ground_truth: ${compileForm.elements.ground_truth.value}
 source_url: ${compileForm.elements.source_url.value}
 source_name: ${compileForm.elements.source_name.value}
 source_published: ${compileForm.elements.source_published.value}
----
+${maybeHidden}${maybeContinuedFrom}---
 `;
 	newSubmit.disabled = false;
 };

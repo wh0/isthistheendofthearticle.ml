@@ -38,7 +38,7 @@ layout: text
 	</li>
 
 	<li>
-		<p>Paste the pull request URL here and click 'Analyze' to fill in most of the fields in the next form.</p>
+		<p>Paste the pull request URL here and click 'Analyze' to fill in most of the fields in the compile form.</p>
 		<form id="read-pull">
 			<p><label>Pull request URL<br><input class="fullwidth" type="url" name="url" required></label></p>
 			<p><input id="read-pull-submit" type="submit" value="Analyze" disabled></p>
@@ -46,7 +46,18 @@ layout: text
 	</li>
 
 	<li>
-		<p>Complete the fields with bolded labels manually, then click 'Compile' to transfer the information into the next form.</p>
+		<p>If this continues from an existing encounter, select that encounter to fill in some more fields in the compile form.</p>
+		<form id="continue">
+			<p><label>Repository owner<br><input class="fullwidth" name="owner" required></label></p>
+			<p><label>Repository<br><input class="fullwidth" name="repo" required></label></p>
+			<p><label>Branch<br><input class="fullwidth" name="branch" required></label></p>
+			<p><label>Continued from<br><select class="fullwidth" name="post"></select></label></p>
+			<p><input id="continue-submit" type="submit" value="Load" disabled></p>
+		</form>
+	</li>
+
+	<li>
+		<p><strong>Compile form.</strong> Complete the fields with bolded labels manually, then click 'Compile' to transfer the information into the next form.</p>
 		<form id="compile">
 			<p><label>Repository owner<br><input class="fullwidth" name="owner" required></label></p>
 			<p><label>Repository<br><input class="fullwidth" name="repo" required></label></p>
@@ -66,6 +77,9 @@ layout: text
 			<p><label><b>Source URL</b><br><input class="fullwidth" type="url" name="source_url"></label></p>
 			<p><label><b>Source name</b><br><input class="fullwidth" name="source_name"></label></p>
 			<p><label><b>Source published date</b><br><input type="date" name="source_published"></label></p>
+			<p><small>Set these to have this encounter linked from another encounter rather than the main list of posts.</small></p>
+			<p><label><b>Hidden</b><br><input type="checkbox" name="hidden"></label></p>
+			<p><label><b>Continued from</b><br><input class="fullwidth" name="continued_from"></label></p>
 			<p><input id="compile-submit" type="submit" value="Compile" disabled></p>
 		</form>
 
