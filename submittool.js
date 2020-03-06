@@ -54,9 +54,9 @@ async function readPull(url) {
 	if (pull.base.repo.name !== dstRepo) alert('pull base repo doesn\'t match. this might get weird');
 	if (pull.head.repo.name !== dstRepo) alert('pull head repo doesn\'t match. this might get weird');
 
-	continueForm.elements.owner.value = pull.head.repo.owner.login;
-	continueForm.elements.repo.value = pull.head.repo.name;
-	continueForm.elements.branch.value = pull.head.ref;
+	continueForm.elements.owner.value = pull.base.repo.owner.login;
+	continueForm.elements.repo.value = pull.base.repo.name;
+	continueForm.elements.branch.value = pull.base.ref;
 	compileForm.elements.owner.value = pull.head.repo.owner.login;
 	compileForm.elements.repo.value = pull.head.repo.name;
 	compileForm.elements.branch.value = pull.head.ref;
@@ -86,7 +86,7 @@ async function readPull(url) {
 		compileForm.elements.image_below.value = `/${newShots[1].filename}`;
 	}
 
-	const posts = await fetchApi(`/repos/${pull.head.repo.owner.login}/${pull.head.repo.name}/contents/_posts?ref=${pull.head.ref}`);
+	const posts = await fetchApi(`/repos/${pull.base.repo.owner.login}/${pull.base.repo.name}/contents/_posts?ref=${pull.base.ref}`);
 	continueForm.elements.post.innerHTML = '';
 	for (let i = posts.length - 1; i >= 0; i--) {
 		const post = posts[i];
